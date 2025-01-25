@@ -26,6 +26,34 @@ function resolveFile(filename: string): string | undefined {
 }
 
 /**
+ * Add current path from URL to possibleNodeModules
+ *
+ * Used when plugin is ran as ES module, which makes require.resolve() unavailable
+ * and async plugins are not supported by Tailwind, which prevents using import()
+ */
+(() => {
+	let path: string;
+	try {
+		// @ts-ignore
+		path = import.meta.url;
+	} catch {
+		//
+	}
+
+	// Clean up path
+	if (path.startsWith('file://')) {
+		path = path.slice(7);
+	}
+
+	const parts = path.split(/[\/]/g);
+	const index = parts.indexOf('node_modules');
+	if (index > 0) {
+		const length = parts.slice(0, index).join('/').length;
+		possibleNodeModules.unshift(path.slice(0, length + 1));
+	}
+})();
+
+/**
  * Locate icon set
  */
 interface LocatedIconSet {
@@ -33,6 +61,7 @@ interface LocatedIconSet {
 	info?: string;
 }
 export function locateIconSet(prefix: string): LocatedIconSet | undefined {
+	// CommonJS way to load files
 	// Try `@iconify-json/{$prefix}`
 	try {
 		const main = require.resolve(`@iconify-json/${prefix}/icons.json`);
