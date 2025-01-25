@@ -16,9 +16,5 @@
 		"build": "pnpm recursive --workspace-concurrency=1 --filter \"./(packages)/**\" run build",
 		"test": "pnpm recursive --workspace-concurrency=1 --filter \"./(packages)/**\" run test"
 	},
-	"devDependencies": {
-		"@iconify-json/mdi-light": "^1.2.2",
-		"rimraf": "^6.0.1",
-		"tailwindcss": "^4.0.0"
-	}
+	"devDependencies": {}
 }

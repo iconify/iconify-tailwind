@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+@plugin "@iconify/tailwind4";
+
+@plugin "@iconify/tailwind4" {
+	prefix: 'icon-override';
+	override-only: true;
+}
+
+.demo {
+	color: var(--color-blue-600);
+}
+.demo:hover {
+	color: var(--color-red-600);
+}
