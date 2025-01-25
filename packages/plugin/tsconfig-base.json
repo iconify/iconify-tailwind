@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"declaration": true,
+		"declarationMap": false,
+		"sourceMap": false,
+		"composite": true,
+		"strict": false,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true
+	}
+}

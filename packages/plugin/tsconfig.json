@@ -1,0 +1,11 @@
+{
+	"extends": "./tsconfig-base.json",
+	"include": ["src/**/*.ts", ".eslintrc.mjs"],
+	"compilerOptions": {
+		"rootDir": "./src",
+		"outDir": "./lib",
+		"module": "NodeNext",
+		"moduleResolution": "nodenext",
+		"lib": ["ESNext", "DOM"]
+	}
+}

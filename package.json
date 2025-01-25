@@ -1,0 +1,24 @@
+{
+	"name": "iconify-tailwind4",
+	"private": true,
+	"description": "Iconify plugin for Tailwind",
+	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://iconify.design)",
+	"license": "MIT",
+	"bugs": "https://github.com/iconify/iconify-tailwind/issues",
+	"homepage": "https://iconify.design/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/iconify/iconify-tailwind.git"
+	},
+	"packageManager": "pnpm@9.15.0",
+	"scripts": {
+		"clean": "rm -rf */*/node_modules",
+		"build": "pnpm recursive --workspace-concurrency=1 --filter \"./(packages)/**\" run build",
+		"test": "pnpm recursive --workspace-concurrency=1 --filter \"./(packages)/**\" run test"
+	},
+	"devDependencies": {
+		"@iconify-json/mdi-light": "^1.2.2",
+		"rimraf": "^6.0.1",
+		"tailwindcss": "^4.0.0"
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"name": "@iconify/tailwind4",
+	"description": "Iconify plugin for Tailwind CSS",
+	"type": "module",
+	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://iconify.design)",
+	"version": "1.0.1",
+	"license": "MIT",
+	"main": "./dist/plugin.js",
+	"types": "./dist/plugin.d.ts",
+	"bugs": "https://github.com/iconify/iconify-tailwind/issues",
+	"homepage": "https://iconify.design/",
+	"funding": "https://github.com/sponsors/cyberalien",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/iconify/iconify-tailwind.git",
+		"directory": "packages/plugin"
+	},
+	"scripts": {
+		"clean": "rimraf lib dist tsconfig.tsbuildinfo",
+		"build": "tsc -b",
+		"test": "vitest --config vitest.config.js"
+	},
+	"dependencies": {
+		"@iconify/types": "^2.0.0",
+		"@iconify/utils": "^2.2.1"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.10.1",
+		"typescript": "^5.7.2",
+		"vitest": "^3.0.4"
+	},
+	"peerDependencies": {
+		"tailwindcss": ">= 4"
+	}
+}
