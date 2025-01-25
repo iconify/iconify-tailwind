@@ -1,7 +1,29 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, lstatSync } from 'node:fs';
 import type { IconifyJSON } from '@iconify/types';
 import type { IconifyIconSetSource } from './options.js';
 import { matchIconName } from '@iconify/utils/lib/icon/name';
+
+/**
+ * Possible node_modules paths, used when `require.resolve()` is not available
+ */
+export const possibleNodeModules = [
+	'./node_modules/',
+	'../node_modules/',
+	'../../node_modules/',
+];
+
+function resolveFile(filename: string): string | undefined {
+	for (let i = 0; i < possibleNodeModules.length; i++) {
+		const path = possibleNodeModules[i] + filename;
+		try {
+			if (lstatSync(path).isFile()) {
+				return path;
+			}
+		} catch {
+			//
+		}
+	}
+}
 
 /**
  * Locate icon set
@@ -31,6 +53,25 @@ export function locateIconSet(prefix: string): LocatedIconSet | undefined {
 		};
 	} catch {
 		//
+	}
+
+	// Try files
+	const main = resolveFile(`@iconify-json/${prefix}/icons.json`);
+	if (main) {
+		const info = resolveFile(`@iconify-json/${prefix}/info.json`);
+		if (info) {
+			return {
+				main,
+				info,
+			};
+		}
+	}
+
+	const full = resolveFile(`@iconify/json/json/${prefix}.json`);
+	if (full) {
+		return {
+			main: full,
+		};
 	}
 }
 
