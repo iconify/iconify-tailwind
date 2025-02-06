@@ -11,7 +11,6 @@ tsconfig.tsbuildinfo
 jest.config.*
 node_modules
 src
-lib
 tests
 tests-compiled
 demo
