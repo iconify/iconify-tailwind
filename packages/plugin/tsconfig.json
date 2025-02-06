@@ -4,8 +4,8 @@
 	"compilerOptions": {
 		"rootDir": "./src",
 		"outDir": "./lib",
-		"module": "NodeNext",
-		"moduleResolution": "nodenext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
 		"lib": ["ESNext", "DOM"]
 	}
 }

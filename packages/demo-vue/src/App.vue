@@ -23,5 +23,17 @@
 				</span>
 			</p>
 		</section>
+		<section class="mt-2 mb-2">
+			<h1 class="text-2xl">Preparsed selectors plugin</h1>
+			<p>
+				Monotone icons, arrow changes on hover:
+				<span class="text-2xl demo">
+					<span
+						class="iconify mdi-light--arrow-left hover:mdi-light--arrow-right"
+					></span>
+					<span class="iconify mdi-light--forum"></span>
+				</span>
+			</p>
+		</section>
 	</div>
 </template>

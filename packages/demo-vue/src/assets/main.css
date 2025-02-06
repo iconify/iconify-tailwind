@@ -5,6 +5,7 @@
 @plugin "@iconify/tailwind4" {
 	prefix: 'icon-override';
 	override-only: true;
+	prefixes: mdi-light;
 }
 
 .demo {

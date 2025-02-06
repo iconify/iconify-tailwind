@@ -29,8 +29,6 @@ export function getDynamicCSSRules(
 
 	const generated = getIconsCSSData(iconSet, [name], {
 		iconSelector: '.icon',
-		customise: (content, name) =>
-			options.customise?.(content, name, prefix) ?? content,
 	});
 	if (generated.css.length !== 1) {
 		throw new Error(`Cannot find "${icon}". Bad icon name?`);
