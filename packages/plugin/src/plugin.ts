@@ -117,12 +117,6 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 				);
 				return;
 
-			case 'scale':
-				const scale = getFloatValue(value, dynamicOptions.scale ?? 1);
-				dynamicOptions.scale = scale;
-				preparsedOptions.scale = scale;
-				return;
-
 			// Common options
 			case 'scale': {
 				const scale = getFloatValue(value, dynamicOptions.scale ?? 1);
