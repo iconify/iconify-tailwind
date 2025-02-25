@@ -134,7 +134,7 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 			matchComponents({
 				[prefix]: (icon: string) => {
 					try {
-						return getDynamicCSSRules(icon);
+						return getDynamicCSSRules(icon, dynamicOptions);
 					} catch (err) {
 						// Log error, but do not throw it
 						console.warn((err as Error).message);
