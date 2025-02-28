@@ -29,30 +29,7 @@ interface LocatedIconSet {
 	info?: string;
 }
 export function locateIconSet(prefix: string): LocatedIconSet | undefined {
-	// CommonJS way to load files
 	// Try `@iconify-json/{$prefix}`
-	try {
-		const main = require.resolve(`@iconify-json/${prefix}/icons.json`);
-		const info = require.resolve(`@iconify-json/${prefix}/info.json`);
-		return {
-			main,
-			info,
-		};
-	} catch {
-		//
-	}
-
-	// Try `@iconify/json`
-	try {
-		const main = require.resolve(`@iconify/json/json/${prefix}.json`);
-		return {
-			main,
-		};
-	} catch {
-		//
-	}
-
-	// Try files
 	const main = resolveFile(`@iconify-json/${prefix}/icons.json`);
 	if (main) {
 		const info = resolveFile(`@iconify-json/${prefix}/info.json`);
@@ -64,6 +41,7 @@ export function locateIconSet(prefix: string): LocatedIconSet | undefined {
 		}
 	}
 
+	// Try `@iconify/json`
 	const full = resolveFile(`@iconify/json/json/${prefix}.json`);
 	if (full) {
 		return {
