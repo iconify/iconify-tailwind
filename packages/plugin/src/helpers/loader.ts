@@ -1,57 +1,25 @@
 import { readFileSync, lstatSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import type { IconifyJSON } from '@iconify/types';
 import type { IconifyIconSetSource } from './options.js';
 import { matchIconName } from '@iconify/utils/lib/icon/name';
 
 /**
- * Possible node_modules paths, used when `require.resolve()` is not available
+ * Try to resolve file
  */
-export const possibleNodeModules = [
-	'./node_modules/',
-	'../node_modules/',
-	'../../node_modules/',
-];
-
 function resolveFile(filename: string): string | undefined {
-	for (let i = 0; i < possibleNodeModules.length; i++) {
-		const path = possibleNodeModules[i] + filename;
-		try {
-			if (lstatSync(path).isFile()) {
-				return path;
-			}
-		} catch {
-			//
-		}
-	}
-}
-
-/**
- * Add current path from URL to possibleNodeModules
- *
- * Used when plugin is ran as ES module, which makes require.resolve() unavailable
- * and async plugins are not supported by Tailwind, which prevents using import()
- */
-(() => {
-	let path: string;
 	try {
-		// @ts-ignore
-		path = import.meta.url;
-	} catch {
+		return fileURLToPath(import.meta.resolve(filename));
+	} catch (err) {
 		//
 	}
 
-	// Clean up path
-	if (path.startsWith('file://')) {
-		path = path.slice(7);
+	try {
+		return require.resolve(filename);
+	} catch (err) {
+		//
 	}
-
-	const parts = path.split(/[\/]/g);
-	const index = parts.indexOf('node_modules');
-	if (index > 0) {
-		const length = parts.slice(0, index).join('/').length;
-		possibleNodeModules.unshift(path.slice(0, length + 1));
-	}
-})();
+}
 
 /**
  * Locate icon set
