@@ -157,7 +157,7 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 				};
 				values = new Proxy(target, handler);
 			}
-			console.log({ values });
+
 			matchComponents({
 				[prefix]: (icon: string) => {
 					try {
