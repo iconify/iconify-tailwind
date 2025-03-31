@@ -63,6 +63,13 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 				);
 				return;
 
+			case 'forceBrackets':
+			case 'force-brackets':
+			case 'forcebrackets': {
+				dynamicOptions.forceBrackets = getBooleanValue(value, dynamicOptions.forceBrackets ?? true);
+				return;
+			}
+
 			// Options for preparsed plugin
 			case 'prefixes': {
 				// prefixes: foo;
@@ -131,6 +138,26 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 		// Dynamic plugin
 		const prefix = dynamicOptions.prefix ?? 'icon';
 		if (prefix) {
+			let values = undefined;
+			if(dynamicOptions.forceBrackets === false){
+				const target = {};
+
+				const handler = {
+					get(target, prop, receiver) {
+						if(!prop.includes('--'))
+							return undefined;
+						if(prop.startsWith('-'))
+							prop = prop.substring(1);
+						if(prop.startsWith('['))
+							prop = prop.substring(1);
+						if(prop.endsWith(']'))
+							prop = prop.substring(0, prop.length - 1);
+						return prop;
+					}
+				};
+				values = new Proxy(target, handler);
+			}
+			console.log({ values });
 			matchComponents({
 				[prefix]: (icon: string) => {
 					try {
@@ -141,6 +168,8 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 						return {};
 					}
 				},
+			},{
+				values
 			});
 		}
 
