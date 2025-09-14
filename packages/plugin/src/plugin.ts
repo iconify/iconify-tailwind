@@ -102,6 +102,16 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 				}
 				return;
 
+			case 'icon-sets':
+			case 'iconSets':
+			case 'iconsets':
+				if (typeof value === 'string') {
+					const iconSets = JSON.parse(value);
+					preparsedOptions.iconSets = iconSets;
+					dynamicOptions.iconSets = iconSets;
+				}
+				return;
+
 			case 'varName':
 			case 'var-name':
 			case 'varname':
