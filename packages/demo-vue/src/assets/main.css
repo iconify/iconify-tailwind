@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
-@plugin "@iconify/tailwind4";
+@plugin "@iconify/tailwind4" {
+	icon-sets: '{"test": "./icon-sets/test.json"}';
+}
 
 @plugin "@iconify/tailwind4" {
 	prefix: 'icon-override';
