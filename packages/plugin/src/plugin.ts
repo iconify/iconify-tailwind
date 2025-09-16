@@ -105,11 +105,9 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 			case 'icon-sets':
 			case 'iconSets':
 			case 'iconsets':
-				if (typeof value === 'string') {
-					const iconSets = JSON.parse(value);
-					preparsedOptions.iconSets = iconSets;
-					dynamicOptions.iconSets = iconSets;
-				}
+				const iconSets = parseCssObject('icon-set', value);
+				preparsedOptions.iconSets = iconSets;
+				dynamicOptions.iconSets = iconSets;
 				return;
 
 			case 'varName':
@@ -161,5 +159,34 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 		}
 	};
 });
+
+/** Parses `$name(k1, v1), $name(k2, v2)` into `{k1: "v1", k2: "v2"}` */
+const parseCssObject = (name, values) => {
+	if (typeof values === 'string') {
+		return parseCssObject(name, [values]);
+	}
+	const err = `Invalid ${name} property: ${values}\nexpected: ${name}(key1, value1), ${name}(key2, value2);`;
+	if (values.constructor !== Array) throw new Error(err);
+
+	return Object.fromEntries(
+		values.map((value: string) => {
+			// https://regexr.com/8h5pb
+			const matched = value.match(
+				new RegExp(`^${name}\\((.*)\\s*,\\s*(.*)\\)$`)
+			);
+			if (!matched) throw new Error(err);
+
+			const k = parseCssString(matched[1]);
+			const v = parseCssString(matched[2]);
+			return [k, v];
+		})
+	);
+};
+
+/** extracts "foo" from: foo, "foo" or 'foo' */
+const parseCssString = (value: string) => {
+	const matched = value.match(/^['"]?([^'"]+)['"]?$/);
+	return matched ? matched[1] : value;
+};
 
 export default exportedPlugin;

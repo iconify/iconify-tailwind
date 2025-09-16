@@ -36,5 +36,12 @@
 				</span>
 			</p>
 		</section>
+		<section class="mt-2 mb-2">
+			<h1 class="text-2xl">Custom icons</h1>
+			<p>
+				<span class="icon-[test--home]"></span>
+				<span class="icon-[test2--home]"></span>
+			</p>
+		</section>
 	</div>
 </template>
