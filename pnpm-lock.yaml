@@ -16,7 +16,7 @@ importers:
     devDependencies:
       '@iconify-json/fa6-regular':
         specifier: ^1.2.2
-        version: 1.2.3
+        version: 1.2.4
       '@iconify-json/mdi-light':
         specifier: ^1.2.1
         version: 1.2.2
@@ -74,7 +74,7 @@ importers:
     devDependencies:
       '@iconify-json/fa6-regular':
         specifier: ^1.2.2
-        version: 1.2.3
+        version: 1.2.4
       '@iconify-json/mdi-light':
         specifier: ^1.2.1
         version: 1.2.2
@@ -554,8 +554,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@iconify-json/fa6-regular@1.2.3':
-    resolution: {integrity: sha512-NGV2j5mn4j49mpP7MABCljp1WPWKjwgfjN6NGwsmlFuQ7bdnz36nZB/5aRXLOcT36NXaBeCoT05G9aatdtMr3A==}
+  '@iconify-json/fa6-regular@1.2.4':
+    resolution: {integrity: sha512-fnUS/MLj3ZAp29oRsC8/aY8Wau7NIg7VesTz3jCcE6VJBzcz95Yxp/Dl5yHvkP+aQxrNw5Lj3nrOXB4nQh+oNA==}
 
   '@iconify-json/mdi-light@1.2.2':
     resolution: {integrity: sha512-86UV9uyNve8zRFWiPrOrrDp9GDzsZM7plYV/on4VjgLLqXlyriuy541eHZB7LIOzTUyIPVli7QiUpBbTtBhsFw==}
@@ -2277,7 +2277,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.10':
     optional: true
 
-  '@iconify-json/fa6-regular@1.2.3':
+  '@iconify-json/fa6-regular@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 
