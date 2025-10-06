@@ -15,7 +15,7 @@ importers:
         version: 3.5.22(typescript@5.9.3)
     devDependencies:
       '@iconify-json/fa6-regular':
-        specifier: ^1.2.2
+        specifier: ^1.2.4
         version: 1.2.4
       '@iconify-json/mdi-light':
         specifier: ^1.2.1
@@ -73,7 +73,7 @@ importers:
         version: 2.3.0
     devDependencies:
       '@iconify-json/fa6-regular':
-        specifier: ^1.2.2
+        specifier: ^1.2.4
         version: 1.2.4
       '@iconify-json/mdi-light':
         specifier: ^1.2.1
