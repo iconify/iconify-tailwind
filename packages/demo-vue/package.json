@@ -22,7 +22,7 @@
 		"@tsconfig/node22": "^22.0.0",
 		"@types/node": "^22.9.3",
 		"@vitejs/plugin-vue": "^5.2.1",
-		"@vue/tsconfig": "^0.7.0",
+		"@vue/tsconfig": "^0.8.1",
 		"npm-run-all2": "^7.0.1",
 		"rimraf": "^6.0.1",
 		"tailwindcss": "^4.0.0",
