@@ -33,7 +33,7 @@ importers:
         specifier: ^22.0.2
         version: 22.0.2
       '@types/node':
-        specifier: ^22.9.3
+        specifier: ^22.18.8
         version: 22.18.8
       '@vitejs/plugin-vue':
         specifier: ^5.2.4
@@ -85,7 +85,7 @@ importers:
         specifier: ^29.5.14
         version: 29.5.14
       '@types/node':
-        specifier: ^22.10.1
+        specifier: ^22.18.8
         version: 22.18.8
       rimraf:
         specifier: ^6.0.1
