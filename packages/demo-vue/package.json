@@ -20,7 +20,7 @@
 		"@iconify/tailwind4": "workspace:*",
 		"@tailwindcss/vite": "^4.0.0",
 		"@tsconfig/node22": "^22.0.2",
-		"@types/node": "^22.9.3",
+		"@types/node": "^22.18.8",
 		"@vitejs/plugin-vue": "^5.2.4",
 		"@vue/tsconfig": "^0.8.1",
 		"npm-run-all2": "^7.0.1",
