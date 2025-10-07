@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/iconify/iconify-tailwind.git"
 	},
-	"packageManager": "pnpm@10.18.0",
+	"packageManager": "pnpm@10.18.1",
 	"scripts": {
 		"clean": "rm -rf */*/node_modules",
 		"build": "pnpm recursive --workspace-concurrency=1 --filter \"./(packages)/**\" run build",
