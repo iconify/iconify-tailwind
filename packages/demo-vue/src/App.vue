@@ -13,6 +13,7 @@
 						class="icon-[mdi-light--arrow-left] hover:icon-override-[mdi-light--arrow-right]"
 					></span>
 					<span class="icon-[mdi-light--forum]"></span>
+					<span class="icon-[test--home]"></span>
 				</span>
 			</p>
 			<p>
@@ -33,6 +34,13 @@
 					></span>
 					<span class="iconify mdi-light--forum"></span>
 				</span>
+			</p>
+		</section>
+		<section class="mt-2 mb-2">
+			<h1 class="text-2xl">Custom icons</h1>
+			<p>
+				<span class="icon-[test--home]"></span>
+				<span class="icon-[test2--home]"></span>
 			</p>
 		</section>
 	</div>
