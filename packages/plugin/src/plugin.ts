@@ -8,6 +8,14 @@ import {
 	getCSSComponentsForPlugin,
 	getCSSRulesForPlugin,
 } from './plugins/preparsed.js';
+import {
+	importDirectorySync,
+	cleanupSVG,
+	parseColors,
+	runSVGO,
+	isEmptyColor,
+} from '@iconify/tools';
+import { IconifyJSON } from '@iconify/types';
 
 function getBooleanValue(value: unknown, defaultValue: boolean): boolean {
 	switch (value) {
@@ -36,7 +44,7 @@ function getFloatValue(value: unknown, defaultValue: number): number {
 	return defaultValue;
 }
 
-const exportedPlugin = plugin.withOptions((params: unknown) => {
+const exportedPlugin: any = plugin.withOptions((params: unknown) => {
 	// Clean up options
 	const dynamicOptions: DynamicIconifyPluginOptions = {};
 	const preparsedOptions: PreparsedIconifyPluginOptions = {};
@@ -105,7 +113,18 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 			case 'icon-sets':
 			case 'iconSets':
 			case 'iconsets':
-				const iconSets = parseCssObject('icon-set', value);
+				const iconSetsList = parseCssObject(
+					'icon-sets',
+					['from-json', 'from-folder'],
+					value
+				).map(({ key, value, type }) => {
+					if (type === 'from-folder') {
+						return [key, iconSetFromFolder(value)];
+					} else {
+						return [key, value];
+					}
+				});
+				const iconSets = Object.fromEntries(iconSetsList);
 				preparsedOptions.iconSets = iconSets;
 				dynamicOptions.iconSets = iconSets;
 				return;
@@ -160,33 +179,89 @@ const exportedPlugin = plugin.withOptions((params: unknown) => {
 	};
 });
 
-/** Parses `$name(k1, v1), $name(k2, v2)` into `{k1: "v1", k2: "v2"}` */
-const parseCssObject = (name, values) => {
+/** Parses `f1(k1, v1), f2(k2, v2)` into
+ * `[{type: "f1", key: "k1", value: "v1"}, {type: "f2", key: "k2", value: "v2"}]` */
+const parseCssObject = (
+	name: string,
+	validFunctions: string[],
+	values: string | string[]
+) => {
 	if (typeof values === 'string') {
-		return parseCssObject(name, [values]);
+		return parseCssObject(name, validFunctions, [values]);
 	}
-	const err = `Invalid ${name} property: ${values}\nexpected: ${name}(key1, value1), ${name}(key2, value2);`;
+	const allowedValues = validFunctions
+		.map((f) => `${f}(key1, value1)`)
+		.join(', ');
+	const err = `Invalid ${name} property: ${values}\nallowed values: ${allowedValues};`;
+
 	if (values.constructor !== Array) throw new Error(err);
 
-	return Object.fromEntries(
-		values.map((value: string) => {
-			// https://regexr.com/8h5pb
-			const matched = value.match(
-				new RegExp(`^${name}\\((.*)\\s*,\\s*(.*)\\)$`)
-			);
-			if (!matched) throw new Error(err);
+	return values.map((value: string) => {
+		// https://regexr.com/8hkrp
+		const matched = value.match(
+			new RegExp(`^(${validFunctions.join('|')})\\((.*)\\s*,\\s*(.*)\\)$`)
+		);
+		if (!matched) throw new Error(err);
 
-			const k = parseCssString(matched[1]);
-			const v = parseCssString(matched[2]);
-			return [k, v];
-		})
-	);
+		const f = matched[1];
+		const k = parseCssString(matched[2]);
+		const v = parseCssString(matched[3]);
+		return { key: k, value: v, type: f };
+	});
 };
 
 /** extracts "foo" from: foo, "foo" or 'foo' */
 const parseCssString = (value: string) => {
 	const matched = value.match(/^['"]?([^'"]+)['"]?$/);
 	return matched ? matched[1] : value;
+};
+
+// copied from https://iconify.design/docs/libraries/tools/import/directory.html
+const iconSetFromFolder = (dir): IconifyJSON => {
+	const iconSet = importDirectorySync(dir);
+
+	// Validate, clean up, fix palette and optimise
+	iconSet.forEachSync((name, type) => {
+		if (type !== 'icon') {
+			return;
+		}
+
+		const svg = iconSet.toSVG(name);
+		if (!svg) {
+			// Invalid icon
+			iconSet.remove(name);
+			return;
+		}
+
+		// Clean up and optimise icons
+		try {
+			// Clean up icon code
+			cleanupSVG(svg);
+
+			// Assume icon is monotone: replace color with currentColor, add if missing
+			// If icon is not monotone, remove this code
+			parseColors(svg, {
+				defaultColor: 'currentColor',
+				callback: (attr, colorStr, color) => {
+					return !color || isEmptyColor(color)
+						? colorStr
+						: 'currentColor';
+				},
+			});
+
+			// Optimise
+			runSVGO(svg);
+		} catch (err) {
+			// Invalid icon
+			console.error(`Error parsing ${name}:`, err);
+			iconSet.remove(name);
+			return;
+		}
+
+		// Update icon
+		iconSet.fromSVG(name, svg);
+	});
+	return iconSet.export();
 };
 
 export default exportedPlugin;
