@@ -23,6 +23,9 @@ export interface DynamicIconifyPluginOptions
 	// Include icon-specific selectors only
 	overrideOnly?: boolean;
 
+	// if set to 'false', these both will work: 'icon-[mdi--home]', 'icon-mdi--home'
+	forceBrackets?: boolean;
+
 	// Sets the default height/width value (ex. scale: 2 = 2em)
 	scale?: number;
 }
