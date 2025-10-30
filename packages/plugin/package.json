@@ -36,6 +36,6 @@
 		"vitest": "^3.2.4"
 	},
 	"peerDependencies": {
-		"tailwindcss": ">= 4.1.16"
+		"tailwindcss": ">= 4.0.0"
 	}
 }
