@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 @plugin "@iconify/tailwind4" {
-	icon-sets: '{"test": "./icon-sets/test.json"}';
+	icon-sets: icon-set(test, './icon-sets/test.json'),
+		icon-set(test2, './icon-sets/test.json');
 }
 
 @plugin "@iconify/tailwind4" {
