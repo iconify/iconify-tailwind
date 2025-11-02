@@ -8,6 +8,14 @@ import {
 	getCSSComponentsForPlugin,
 	getCSSRulesForPlugin,
 } from './plugins/preparsed.js';
+import {
+	importDirectorySync,
+	cleanupSVG,
+	parseColors,
+	runSVGO,
+	isEmptyColor,
+} from '@iconify/tools';
+import { IconifyJSON } from '@iconify/types';
 
 function getBooleanValue(value: unknown, defaultValue: boolean): boolean {
 	switch (value) {
@@ -103,6 +111,25 @@ const exportedPlugin: ReturnType<typeof plugin.withOptions> =
 					}
 					return;
 
+				case 'icon-sets':
+				case 'iconSets':
+				case 'iconsets':
+					const iconSetsList = parseCssObject(
+						'icon-sets',
+						['from-json', 'from-folder'],
+						value
+					).map(({ key, value, type }) => {
+						if (type === 'from-folder') {
+							return [key, iconSetFromFolder(value)];
+						} else {
+							return [key, value];
+						}
+					});
+					const iconSets = Object.fromEntries(iconSetsList);
+					preparsedOptions.iconSets = iconSets;
+					dynamicOptions.iconSets = iconSets;
+					return;
+
 				case 'varName':
 				case 'var-name':
 				case 'varname':
@@ -155,5 +182,97 @@ const exportedPlugin: ReturnType<typeof plugin.withOptions> =
 			}
 		};
 	});
+
+/** Parses `f1(k1, v1), f2(k2, v2)` into
+ * `[{type: "f1", key: "k1", value: "v1"}, {type: "f2", key: "k2", value: "v2"}]` */
+const parseCssObject = (
+	name: string,
+	validFunctions: string[],
+	values: string | string[]
+) => {
+	if (typeof values === 'string') {
+		return parseCssObject(name, validFunctions, [values]);
+	}
+	const allowedValues = validFunctions
+		.map((f) => `${f}(key1, value1)`)
+		.join(', ');
+	const err = `Invalid ${name} property: ${values}\nallowed values: ${allowedValues};`;
+
+	if (values.constructor !== Array) throw new Error(err);
+
+	return values.map((value: string) => {
+		// https://regexr.com/8hkrp
+		const matched = value.match(
+			new RegExp(`^(${validFunctions.join('|')})\\((.*)\\s*,\\s*(.*)\\)$`)
+		);
+		if (!matched) throw new Error(err);
+
+		const f = matched[1];
+		const k = parseCssString(matched[2]);
+		const v = parseCssString(matched[3]);
+		return { key: k, value: v, type: f };
+	});
+};
+
+/** extracts "foo" from: foo, "foo" or 'foo' */
+const parseCssString = (value: string) => {
+	const matched = value.match(/^['"]?([^'"]+)['"]?$/);
+	return matched ? matched[1] : value;
+};
+
+// copied from https://iconify.design/docs/libraries/tools/import/directory.html
+const iconSetFromFolder = (dir): IconifyJSON => {
+	const iconSet = importDirectorySync(dir);
+
+	// Validate, clean up, fix palette and optimise
+	iconSet.forEachSync((name, type) => {
+		if (type !== 'icon') {
+			return;
+		}
+
+		const svg = iconSet.toSVG(name);
+		if (!svg) {
+			// Invalid icon
+			iconSet.remove(name);
+			return;
+		}
+
+		// Clean up and optimise icons
+		try {
+			// Clean up icon code
+			cleanupSVG(svg);
+
+			// Check palette
+			const palette = parseColors(svg);
+			const colors = palette.colors.filter(
+				(color) => typeof color === 'string' || !isEmptyColor(color)
+			);
+			const totalColors = colors.length + (palette.hasUnsetColor ? 1 : 0);
+			if (totalColors < 2) {
+				// Monotone icon
+				parseColors(svg, {
+					defaultColor: 'currentColor',
+					callback: (attr, colorStr, color) => {
+						return !color || isEmptyColor(color)
+							? colorStr
+							: 'currentColor';
+					},
+				});
+			}
+
+			// Optimise
+			runSVGO(svg);
+		} catch (err) {
+			// Invalid icon
+			console.error(`Error parsing ${name}:`, err);
+			iconSet.remove(name);
+			return;
+		}
+
+		// Update icon
+		iconSet.fromSVG(name, svg);
+	});
+	return iconSet.export();
+};
 
 export default exportedPlugin;
