@@ -38,11 +38,12 @@
 		<section class="mt-2 mb-2">
 			<h1 class="text-3xl">Custom icons</h1>
 			<p>
-				Monotone, monotone, color non-square:
+				Monotone, monotone, color non-square, color square:
 				<span class="text-2xl demo">
 					<span class="icon-[test--home]"></span>
 					<span class="icon-[test2--spinner]"></span>
 					<span class="icon-[test2--scan]"></span>
+					<span class="square-icon-[test3--scan]"></span>
 				</span>
 			</p>
 		</section>

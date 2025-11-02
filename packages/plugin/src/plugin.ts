@@ -165,7 +165,24 @@ const exportedPlugin: ReturnType<typeof plugin.withOptions> =
 				matchComponents({
 					[prefix]: (icon: string) => {
 						try {
-							return getDynamicCSSRules(icon, dynamicOptions);
+							const rules = getDynamicCSSRules(
+								icon,
+								dynamicOptions
+							);
+
+							// Make icon square
+							if (
+								preparsedOptions.square &&
+								rules.width &&
+								rules.width !== rules.height
+							) {
+								if (!rules.height) {
+									delete rules.width;
+								} else {
+									rules.width = rules.height;
+								}
+							}
+							return rules;
 						} catch (err) {
 							// Log error, but do not throw it
 							console.warn((err as Error).message);

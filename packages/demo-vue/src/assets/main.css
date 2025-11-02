@@ -6,6 +6,12 @@
 }
 
 @plugin "@iconify/tailwind4" {
+	prefix: 'square-icon';
+	square: true;
+	icon-sets: from-folder(test3, './icon-sets/svgs');
+}
+
+@plugin "@iconify/tailwind4" {
 	prefix: 'icon-override';
 	override-only: true;
 	prefixes: mdi-light;
