@@ -36,10 +36,14 @@
 			</p>
 		</section>
 		<section class="mt-2 mb-2">
-			<h1 class="text-2xl">Custom icons</h1>
+			<h1 class="text-3xl">Custom icons</h1>
 			<p>
-				<span class="icon-[test--home]"></span>
-				<span class="icon-[test2--spinner]"></span>
+				Monotone, monotone, color non-square:
+				<span class="text-2xl demo">
+					<span class="icon-[test--home]"></span>
+					<span class="icon-[test2--spinner]"></span>
+					<span class="icon-[test2--scan]"></span>
+				</span>
 			</p>
 		</section>
 	</div>

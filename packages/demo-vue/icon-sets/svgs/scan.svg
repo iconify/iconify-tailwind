@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="192" viewBox="0 0 20 24">
+	<defs>
+		<mask id="SVGf0YTEbZs">
+			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M3 12h14" stroke="#fff" stroke-width="var(--svg-stroke-width, 1.5px)">
+					<animateTransform attributeName="transform" type="translate" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.45;0.55;1" values="0 0;0 8;0 -8;0 0" />
+				</path>
+				<g stroke="#000" stroke-width="var(--svg-mask-width, calc(var(--svg-stroke-width, 1.5px) + 1px))">
+					<path d="M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1">
+						<animate attributeName="d" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.45;0.55;0.75;1" values="M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 3h1c1.1 0 2 0.9 2 2v1M2 6v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1" />
+					</path>
+					<path d="M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1">
+						<animate attributeName="d" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.3;0.45;0.55;1" values="M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 18v1c0 1.1 -0.9 2 -2 2h-1M5 21h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1" />
+					</path>
+				</g>
+			</g>
+		</mask>
+	</defs>
+	<path d="M0 0h20v24H0z" fill="#486496" mask="url(#SVGf0YTEbZs)" />
+	<g fill="none" stroke="#459330" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--svg-stroke-width, 1.5px)">
+		<path d="M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1">
+			<animate attributeName="d" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.45;0.55;0.75;1" values="M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 3h1c1.1 0 2 0.9 2 2v1M2 6v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1;M15 4h1c1.1 0 2 0.9 2 2v1M2 7v-1c0 -1.1 0.9 -2 2 -2h1" />
+		</path>
+		<path d="M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1">
+			<animate attributeName="d" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.3;0.45;0.55;1" values="M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 18v1c0 1.1 -0.9 2 -2 2h-1M5 21h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1;M18 17v1c0 1.1 -0.9 2 -2 2h-1M5 20h-1c-1.1 0 -2 -0.9 -2 -2v-1" />
+		</path>
+	</g>
+</svg>
