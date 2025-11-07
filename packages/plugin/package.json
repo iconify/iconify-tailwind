@@ -34,7 +34,7 @@
 		"rimraf": "^6.1.0",
 		"tailwindcss": "^4.1.17",
 		"typescript": "^5.9.3",
-		"vitest": "^4.0.7"
+		"vitest": "^4.0.8"
 	},
 	"peerDependencies": {
 		"tailwindcss": ">= 4.0.0"
