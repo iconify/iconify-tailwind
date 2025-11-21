@@ -31,7 +31,7 @@
 		"@iconify-json/vscode-icons": "^1.2.34",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.10.1",
-		"rimraf": "^6.1.0",
+		"rimraf": "^6.1.2",
 		"tailwindcss": "^4.1.17",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.8"
