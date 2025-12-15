@@ -19,7 +19,7 @@
 		"@iconify-json/vscode-icons": "^1.2.37",
 		"@iconify/tailwind4": "workspace:*",
 		"@tailwindcss/vite": "^4.1.18",
-		"@tsconfig/node22": "^22.0.5",
+		"@tsconfig/node24": "^24.0.0",
 		"@types/node": "^24.10.4",
 		"@vitejs/plugin-vue": "^6.0.3",
 		"@vue/tsconfig": "^0.8.1",
