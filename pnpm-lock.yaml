@@ -66,8 +66,8 @@ importers:
   packages/plugin:
     dependencies:
       '@iconify/tools':
-        specifier: ^5.0.0
-        version: 5.0.0
+        specifier: ^5.0.1
+        version: 5.0.1
       '@iconify/types':
         specifier: ^2.0.0
         version: 2.0.0
@@ -416,8 +416,8 @@ packages:
   '@iconify-json/vscode-icons@1.2.37':
     resolution: {integrity: sha512-HLRdU6nZks4N8x3JYz6j+b3+hcUCvYvlTLwGzM3xyXfTJyDSA2cAdWcEXfoA4hQMJGA+zCDSPAWFelFptH5Kbw==}
 
-  '@iconify/tools@5.0.0':
-    resolution: {integrity: sha512-GY/FsuNdWA/FbkLqgQ8b1PHFkNvjMeSFWaVJdLldYGHBp0lZ64HJlcS0qzLfglacHTd8zYdfQjF74RxGqyGMgw==}
+  '@iconify/tools@5.0.1':
+    resolution: {integrity: sha512-/znhBN9WIpJd9UtKhyEDfRKwNo8rrOy8dShF8bwSZ1i27ukTSHjeS6bmVK4tTYBYriwFhBf70JT6g8GIRwFvbw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1284,8 +1284,8 @@ packages:
   mlly@1.8.0:
     resolution: {integrity: sha512-l8D9ODSRWLe2KHJSifWGwBqpTZXIXTeo8mlKjY+E2HAakaTeNpqAyBZ8GSqLzHgw4XmHmC8whvpjJNMbFZN7/g==}
 
-  modern-tar@0.7.2:
-    resolution: {integrity: sha512-TGG1ZRk1TAQ3neuZwahAHke3rKsSlro+ooMYtjh9sl2gGPVMLMuWiHgwC7im9T5bSM566RSo2Dko56ETgEvZcA==}
+  modern-tar@0.7.3:
+    resolution: {integrity: sha512-4W79zekKGyYU4JXVmB78DOscMFaJth2gGhgfTl2alWE4rNe3nf4N2pqenQ0rEtIewrnD79M687Ouba3YGTLOvg==}
     engines: {node: '>=18.0.0'}
 
   mrmime@2.0.0:
@@ -1968,13 +1968,13 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/tools@5.0.0':
+  '@iconify/tools@5.0.1':
     dependencies:
       '@cyberalien/svg-utils': 1.0.11
       '@iconify/types': 2.0.0
       '@iconify/utils': 3.1.0
       fflate: 0.8.2
-      modern-tar: 0.7.2
+      modern-tar: 0.7.3
       pathe: 2.0.3
       svgo: 4.0.0
 
@@ -2816,7 +2816,7 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  modern-tar@0.7.2: {}
+  modern-tar@0.7.3: {}
 
   mrmime@2.0.0: {}
 
