@@ -79,6 +79,9 @@ export function getCSSRulesForPlugin(options: PreparsedIconifyPluginOptions) {
 	// Scale
 	const scale = options.scale ?? 1;
 
+	const loadIconSetForPrefix = (prefix: string) =>
+		loadIconSet(options.iconSets?.[prefix] ?? prefix);
+
 	options.prefixes?.forEach((item) => {
 		let prefix: string;
 		let iconSet: IconifyJSON | undefined;
@@ -89,7 +92,7 @@ export function getCSSRulesForPlugin(options: PreparsedIconifyPluginOptions) {
 		if (typeof item === 'string') {
 			// Prefix
 			prefix = item;
-			iconSet = loadIconSet(prefix);
+			iconSet = loadIconSetForPrefix(prefix);
 		} else if (item.source) {
 			// Source, possibly with prefix
 			iconSet = loadIconSet(item.source);
@@ -103,8 +106,8 @@ export function getCSSRulesForPlugin(options: PreparsedIconifyPluginOptions) {
 			}
 		} else {
 			// Prefix
-			prefix = item.prefix || iconSet?.prefix;
-			iconSet = prefix ? loadIconSet(prefix) : undefined;
+			prefix = item.prefix;
+			iconSet = prefix ? loadIconSetForPrefix(prefix) : undefined;
 			iconsList = item.icons;
 			customise = item.customise;
 		}
